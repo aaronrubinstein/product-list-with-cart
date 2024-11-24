@@ -45,14 +45,10 @@ body {
   background-color: var(--rose50);
 }
 
-/* #app {
+#app {
   display: flex;
-	justify-content: center;
-  
-  max-width: 1216px;
-  margin: 0 auto;
-  padding: 
-} */
+  justify-content: center; 
+}
 
 .text1 {
   font-size: 40px;
