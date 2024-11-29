@@ -1,4 +1,6 @@
-const data: MenuItem[] = [
+import type { MenuItem } from "./types";
+
+const products: MenuItem[] = [
     {
        "image": {
             "thumbnail": "/images/image-waffle-thumbnail.jpg",
@@ -100,4 +102,4 @@ const data: MenuItem[] = [
      }
 ];
 
-export default data;
+export default products;

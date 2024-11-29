@@ -1,18 +1,29 @@
 <script lang="ts">
-    let { name, quantity, price } = $props();
-    let total = quantity * price;
+    import type { CartItem } from "../types";
+
+    interface Props {
+        cartProduct: CartItem;
+        removeProductFromCart: (id: string) => void;
+    }
+
+    let { cartProduct, removeProductFromCart }: Props = $props();
+    let total = cartProduct.quantity * cartProduct.product.price;
 </script>
 
-<div class="cart-item">
-    <div class="item-details">
-        <p class="text4bold">{name}</p>
-        <div class="item-qty-and-price">
-            <span class="qty text4bold">{quantity}x</span>
-            <span class="price text4">@ ${price.toFixed(2)}</span>
+<div class="cart-product">
+    <div class="product-details">
+        <p class="text4bold">{cartProduct.product.name}</p>
+        <div class="product-qty-and-price">
+            <span class="qty text4bold">{cartProduct.quantity}x</span>
+            <span class="price text4">@ ${cartProduct.product.price.toFixed(2)}</span>
             <span class="total text4bold">${total.toFixed(2)}</span>
         </div>
     </div>
-    <button type="button" aria-label="Remove item from cart">
+    <button
+        type="button"
+        aria-label="Remove item from cart"
+        onclick={() => removeProductFromCart(cartProduct.id)}
+    >
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -34,7 +45,7 @@
 <hr />
 
 <style>
-    .cart-item {
+    .cart-product {
         display: flex;
         justify-content: space-between;
     }
@@ -44,7 +55,7 @@
         margin-bottom: 8px;
     }
 
-    .item-qty-and-price {
+    .product-qty-and-price {
         display: flex;
         gap: 8px;
     }
