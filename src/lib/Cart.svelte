@@ -5,9 +5,14 @@
     interface Props {
         cart: CartItem[];
         removeProductFromCart: (id: string) => void;
+        showOrderConfirmation: boolean;
     }
 
-    let { cart = $bindable(), removeProductFromCart }: Props = $props();
+    let {
+        cart = $bindable(),
+        removeProductFromCart,
+        showOrderConfirmation = $bindable(),
+    }: Props = $props();
 
     let cartStats = $derived.by(() => {
         let quantity = 0;
@@ -51,7 +56,13 @@
             </span>
         </div>
 
-        <button type="button" class="confirm-btn text3"> Confirm Order </button>
+        <button
+            onclick={() => (showOrderConfirmation = true)}
+            type="button"
+            class="confirm-btn text3"
+        >
+            Confirm Order
+        </button>
     {/if}
 </div>
 
@@ -88,7 +99,8 @@
     }
 
     .cart-total {
-        margin: 8px 0 24px 0;
+        margin-bottom: 24px;
+        padding-top: 8px;
         display: flex;
         justify-content: space-between;
         align-items: center;

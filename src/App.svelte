@@ -3,9 +3,12 @@
     import products from "./data";
     import Product from "./lib/Product.svelte";
     import Cart from "./lib/Cart.svelte";
+    import OrderConfirmation from "./lib/OrderConfirmation.svelte";
 
     let cart: CartItem[] = $state([]);
-    // let cart = $state<CartItem[]>([]);
+    let showOrderConfirmation = $state(false);
+
+    $inspect(cart);
 
     const addProductToCart = (product: MenuItem) => {
         cart.push({
@@ -18,6 +21,10 @@
     const removeProductFromCart = (id: string) => {
         cart = cart.filter((product) => product.id !== id);
     };
+
+    const resetCart = () => {
+        cart = [];
+    };
 </script>
 
 <main>
@@ -29,8 +36,10 @@
             {/each}
         </div>
     </div>
-    <Cart bind:cart {removeProductFromCart} />
+    <Cart bind:cart {removeProductFromCart} bind:showOrderConfirmation />
 </main>
+
+<OrderConfirmation {cart} bind:showOrderConfirmation {resetCart} />
 
 <style>
     main {
@@ -57,6 +66,8 @@
     @media (752px <= width < 1296px) {
         main {
             flex-direction: column;
+            margin-top: 40px;
+            margin-bottom: 40px;
         }
 
         .menu-items {
@@ -67,6 +78,8 @@
     @media (width < 752px) {
         main {
             flex-direction: column;
+            margin-top: 24px;
+            margin-bottom: 24px;
         }
 
         .menu-items {
