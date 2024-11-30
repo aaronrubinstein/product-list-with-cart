@@ -11,11 +11,9 @@ This is a solution to the [Product list with cart challenge on Frontend Mentor](
 
 **Desktop**
 
-<img src="./solution/desktop.png" height=70% width=70%>
+<img src="./solution/desktop.png" height=80% width=80%>
 
 **Mobile**
-
-<img src="./solution/mobile.png" height=30% width=30%>
 
 <img src="./solution/mobile.png" height=30% width=30%>
 
